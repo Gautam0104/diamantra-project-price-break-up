@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamantra — Pricing Breakup</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ─── Navbar: Top Bar (Maroon) ─── -->
+  <nav class="nav-top">
+    <div class="nav-top__inner">
+      <a href="#" class="nav-top__link">All Jewellery</a>
+      <a href="#" class="nav-top__link">Gold</a>
+      <a href="#" class="nav-top__link">Silver</a>
+      <a href="#" class="nav-top__link nav-top__link--active">Pricing Tool</a>
+    </div>
+  </nav>
+
+  <!-- ─── Navbar: Bottom Bar (White + Logo) ─── -->
+  <nav class="nav-bottom">
+    <div class="nav-bottom__inner">
+      <div class="nav-bottom__logo">Diamantra</div>
+      <div class="nav-bottom__rate-control">
+        <label for="goldRate" class="rate-label">Market Gold Rate</label>
+        <div class="rate-input-wrap">
+          <span class="rate-prefix">₹</span>
+          <input type="number" id="goldRate" class="rate-input" value="7300" min="0" step="100">
+          <span class="rate-suffix">per gram</span>
+        </div>
+      </div>
+      <div class="nav-bottom__actions">
+        <!-- Decorative icons matching Diamantra nav -->
+        <button class="icon-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── Hero Banner ─── -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Pricing Breakup</h1>
+      <p class="hero__subtitle">Understand the value behind every piece of jewellery</p>
+    </div>
+  </section>
+
+  <!-- ─── Product Selector ─── -->
+  <section class="products-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="section-heading__title">Select a Product</h2>
+        <div class="section-heading__line"></div>
+      </div>
+      <div class="product-cards" id="productCards">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Product Detail + Pricing Breakup ─── -->
+  <section class="detail-section">
+    <div class="container">
+      <div class="detail-grid">
+
+        <!-- Left: Product Image -->
+        <div class="detail-image">
+          <div class="detail-image__main" id="productImage">
+            <span class="detail-image__diamond">&#9670;</span>
+          </div>
+        </div>
+
+        <!-- Right: Product Info -->
+        <div class="detail-info">
+          <h2 class="detail-info__name" id="productName"></h2>
+          <div class="detail-info__subtitle-row">
+            <span class="detail-info__subtitle" id="productSubtitle"></span>
+            <span class="detail-info__divider"></span>
+            <span class="detail-info__stars">★★★★★</span>
+          </div>
+          <p class="detail-info__code" id="productCode"></p>
+          <p class="detail-info__desc" id="productDesc"></p>
+          <p class="detail-info__price" id="productPrice"></p>
+
+          <!-- Edit / Delete actions -->
+          <div class="detail-info__actions">
+            <button class="btn btn--outline" id="editProductBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit Product
+            </button>
+            <button class="btn btn--danger-outline" id="deleteProductBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              Delete
+            </button>
+          </div>
+
+          <!-- Metal Variants -->
+          <div class="variants-bar">
+            <div class="variant">
+              <div class="variant__circle variant__circle--gold"></div>
+              <span class="variant__label">Gold</span>
+            </div>
+            <div class="variants-bar__sep"></div>
+            <div class="variant">
+              <div class="variant__circle variant__circle--rose"></div>
+              <span class="variant__label">Rose Gold</span>
+            </div>
+            <div class="variants-bar__sep"></div>
+            <div class="variant">
+              <div class="variant__circle variant__circle--white"></div>
+              <span class="variant__label">White Gold</span>
+            </div>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="trust-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Certified Diamond</span>
+            </div>
+            <div class="trust-badges__sep"></div>
+            <div class="trust-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>30 Day Return</span>
+            </div>
+            <div class="trust-badges__sep"></div>
+            <div class="trust-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Made in India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Pricing Breakup Tables ─── -->
+  <section class="breakup-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="section-heading__title">Pricing Breakup</h2>
+        <p class="section-heading__sub">Detailed cost breakdown for the selected product</p>
+        <div class="section-heading__line"></div>
+      </div>
+
+      <div class="breakup-grid">
+
+        <!-- Case 1 -->
+        <div class="breakup-card">
+          <div class="breakup-card__header">
+            <h3>Gold Jewellery</h3>
+            <span>Making Charge @ ₹1,100/g</span>
+          </div>
+          <div class="breakup-card__body">
+            <div class="breakup-row">
+              <span class="breakup-row__label">Gold Weight</span>
+              <span class="breakup-row__value" id="c1GoldWeight"></span>
+            </div>
+            <div class="breakup-row">
+              <span class="breakup-row__label">Gold Rate</span>
+              <span class="breakup-row__value" id="c1GoldRate"></span>
+            </div>
+            <div class="breakup-row breakup-row--gold">
+              <span class="breakup-row__label">Gold Charges</span>
+              <span class="breakup-row__value" id="c1GoldCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--making">
+              <span class="breakup-row__label">Making Charges</span>
+              <span class="breakup-row__value" id="c1MakingCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--diamond">
+              <span class="breakup-row__label">Diamond Charges</span>
+              <span class="breakup-row__value" id="c1DiamondCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--subtotal">
+              <span class="breakup-row__label">Subtotal</span>
+              <span class="breakup-row__value" id="c1Subtotal"></span>
+            </div>
+            <div class="breakup-row breakup-row--gst">
+              <span class="breakup-row__label">GST @ 3%</span>
+              <span class="breakup-row__value" id="c1GST"></span>
+            </div>
+          </div>
+          <div class="breakup-card__total">
+            <span>Total Selling Price</span>
+            <span id="c1Total"></span>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="breakup-card">
+          <div class="breakup-card__header">
+            <h3>Gold Enamel Jewellery</h3>
+            <span>Making Charge @ ₹1,300/g</span>
+          </div>
+          <div class="breakup-card__body">
+            <div class="breakup-row">
+              <span class="breakup-row__label">Gold Weight</span>
+              <span class="breakup-row__value" id="c2GoldWeight"></span>
+            </div>
+            <div class="breakup-row">
+              <span class="breakup-row__label">Gold Rate</span>
+              <span class="breakup-row__value" id="c2GoldRate"></span>
+            </div>
+            <div class="breakup-row breakup-row--gold">
+              <span class="breakup-row__label">Gold Charges</span>
+              <span class="breakup-row__value" id="c2GoldCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--making">
+              <span class="breakup-row__label">Making Charges</span>
+              <span class="breakup-row__value" id="c2MakingCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--diamond">
+              <span class="breakup-row__label">Diamond Charges</span>
+              <span class="breakup-row__value" id="c2DiamondCharges"></span>
+            </div>
+            <div class="breakup-row breakup-row--subtotal">
+              <span class="breakup-row__label">Subtotal</span>
+              <span class="breakup-row__value" id="c2Subtotal"></span>
+            </div>
+            <div class="breakup-row breakup-row--gst">
+              <span class="breakup-row__label">GST @ 3%</span>
+              <span class="breakup-row__value" id="c2GST"></span>
+            </div>
+          </div>
+          <div class="breakup-card__total">
+            <span>Total Selling Price</span>
+            <span id="c2Total"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Product Specs Table (Diamantra style) ─── -->
+  <section class="specs-section">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="section-heading__title">Product Details</h2>
+        <div class="section-heading__line"></div>
+      </div>
+      <div class="specs-table" id="specsTable">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Product Form Modal ─── -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modalTitle">Add Product</h3>
+        <button class="modal__close" id="modalClose">&times;</button>
+      </div>
+      <form class="modal__form" id="productForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fName">Product Name</label>
+            <input type="text" id="fName" required placeholder="e.g. Eternal Promise Ring">
+          </div>
+          <div class="form-group">
+            <label for="fSubtitle">Subtitle</label>
+            <input type="text" id="fSubtitle" required placeholder="e.g. Solitaire Promise Ring">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fCode">Product Code</label>
+            <input type="text" id="fCode" required placeholder="e.g. CVDSWR001">
+          </div>
+          <div class="form-group">
+            <label for="fType">Category</label>
+            <select id="fType" required>
+              <option value="Ring">Ring</option>
+              <option value="Pendant">Pendant</option>
+              <option value="Necklace">Necklace</option>
+              <option value="Earring">Earring</option>
+              <option value="Bracelet">Bracelet</option>
+              <option value="Bangle">Bangle</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fGoldWeight">Gold Weight (g)</label>
+            <input type="number" id="fGoldWeight" required min="0.1" step="0.1" placeholder="e.g. 1.8">
+          </div>
+          <div class="form-group">
+            <label for="fDiamondCharges">Diamond Charges (₹)</label>
+            <input type="number" id="fDiamondCharges" required min="0" step="100" placeholder="e.g. 28500">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fDesc">Description</label>
+          <textarea id="fDesc" rows="3" placeholder="Brief product description..."></textarea>
+        </div>
+        <div class="form-row form-row--actions">
+          <button type="button" class="btn btn--outline" id="modalCancel">Cancel</button>
+          <button type="submit" class="btn btn--primary" id="modalSubmit">Add Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Footer (Diamantra style) ─── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo-wrap">
+        <div class="footer__logo-circle">
+          <span class="footer__logo-text">D</span>
+        </div>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Quick Links</h4>
+          <a href="#">Gold</a>
+          <a href="#">Silver</a>
+          <a href="#">Rings</a>
+          <a href="#">Earrings</a>
+          <a href="#">All Jewellery</a>
+        </div>
+        <div class="footer__col">
+          <h4>About Us</h4>
+          <a href="#">About Diamantra</a>
+          <a href="#">Designer Story</a>
+          <a href="#">Brand USP</a>
+        </div>
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <a href="#">Return Policy</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms & Conditions</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 Diamantra. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
