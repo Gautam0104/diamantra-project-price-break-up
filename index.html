@@ -27,7 +27,7 @@
         <label for="goldRate" class="rate-label">Market Gold Rate</label>
         <div class="rate-input-wrap">
           <span class="rate-prefix">₹</span>
-          <input type="number" id="goldRate" class="rate-input" value="15304" min="0" step="100">
+          <input type="number" id="goldRate" class="rate-input" value="9136" min="0" step="100">
           <span class="rate-suffix">per gram</span>
         </div>
       </div>
@@ -152,13 +152,18 @@
         <div class="section-heading__line"></div>
       </div>
 
+      <div class="breakup-tabs">
+        <button class="breakup-tab breakup-tab--active" id="tabPureGold" data-category="pure-gold">Gold</button>
+        <button class="breakup-tab" id="tabGoldEnamel" data-category="gold-enamel">Gold Enamel</button>
+      </div>
+
       <div class="breakup-grid">
 
         <!-- Case 1 -->
-        <div class="breakup-card">
+        <div class="breakup-card" id="c1Card">
           <div class="breakup-card__header">
             <h3>Gold Jewellery</h3>
-            <span>Making Charge @ ₹1,100/g</span>
+            <span id="c1MakingLabel">Making Charge @ ₹1,100/g</span>
           </div>
           <div class="breakup-card__body">
             <div class="breakup-row">
@@ -166,7 +171,7 @@
               <span class="breakup-row__value" id="c1GoldWeight"></span>
             </div>
             <div class="breakup-row">
-              <span class="breakup-row__label">Gold Rate <span style="font-size:0.75em; color:#b8860b; font-weight:600;">(24K)</span></span>
+              <span class="breakup-row__label">Gold Rate <span style="font-size:0.75em; color:#b8860b; font-weight:600;">(14K)</span></span>
               <span class="breakup-row__value" id="c1GoldRate"></span>
             </div>
             <div class="breakup-row breakup-row--gold">
@@ -197,10 +202,10 @@
         </div>
 
         <!-- Case 2 -->
-        <div class="breakup-card">
+        <div class="breakup-card" id="c2Card" style="display:none;">
           <div class="breakup-card__header">
             <h3>Gold Enamel Jewellery</h3>
-            <span>Making Charge @ ₹1,300/g</span>
+            <span id="c2MakingLabel">Making Charge @ ₹1,300/g</span>
           </div>
           <div class="breakup-card__body">
             <div class="breakup-row">

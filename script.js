@@ -141,6 +141,15 @@ const fDesc = document.getElementById("fDesc");
 
 let selectedProductId = products[0].id;
 let editingProductId = null; // null = add mode, number = edit mode
+let selectedCategory = "pure-gold"; // "pure-gold" or "gold-enamel"
+
+// Category tab & card references
+const tabPureGold = document.getElementById("tabPureGold");
+const tabGoldEnamel = document.getElementById("tabGoldEnamel");
+const c1Card = document.getElementById("c1Card");
+const c2Card = document.getElementById("c2Card");
+const c1MakingLabel = document.getElementById("c1MakingLabel");
+const c2MakingLabel = document.getElementById("c2MakingLabel");
 
 // ─── Modal ───
 
@@ -222,6 +231,17 @@ function deleteProduct(id) {
   refreshAll();
 }
 
+// ─── Category Toggle ───
+
+function switchCategory(category) {
+  selectedCategory = category;
+  tabPureGold.classList.toggle("breakup-tab--active", category === "pure-gold");
+  tabGoldEnamel.classList.toggle("breakup-tab--active", category === "gold-enamel");
+  c1Card.style.display = category === "pure-gold" ? "block" : "none";
+  c2Card.style.display = category === "gold-enamel" ? "block" : "none";
+  updateBreakup();
+}
+
 // ─── Render ───
 
 function refreshAll() {
@@ -234,7 +254,8 @@ function renderProductCards() {
 
   const cards = products
     .map((p) => {
-      const breakup = calculateBreakup(p.diamondCharges, p.goldWeight, goldRate, MAKING_RATE_CASE_1);
+      const makingRate = selectedCategory === "pure-gold" ? MAKING_RATE_CASE_1 : MAKING_RATE_CASE_2;
+      const breakup = calculateBreakup(p.diamondCharges, p.goldWeight, goldRate, makingRate);
       const icon = TYPE_ICONS[p.type] || "◆";
       return `
     <div class="product-card ${p.id === selectedProductId ? "product-card--active" : ""}"
@@ -341,7 +362,13 @@ function updateBreakup() {
   productSubtitleEl.textContent = product.subtitle;
   productCodeEl.textContent = product.productCode;
   productDescEl.textContent = product.description;
-  productPriceEl.textContent = formatINR(case1.total);
+  productPriceEl.textContent = formatINR(
+    selectedCategory === "pure-gold" ? case1.total : case2.total
+  );
+
+  // Hide "Making Charge @ ₹X/g" label when weight < 1g (flat rate applies)
+  c1MakingLabel.style.display = product.goldWeight < 1 ? "none" : "block";
+  c2MakingLabel.style.display = product.goldWeight < 1 ? "none" : "block";
 
   // Render specs table
   renderSpecsTable(product);
@@ -376,6 +403,9 @@ function updateBreakup() {
 // ─── Event Listeners ───
 
 goldRateInput.addEventListener("input", refreshAll);
+
+tabPureGold.addEventListener("click", () => switchCategory("pure-gold"));
+tabGoldEnamel.addEventListener("click", () => switchCategory("gold-enamel"));
 
 editProductBtn.addEventListener("click", () => {
   const product = products.find((p) => p.id === selectedProductId);
