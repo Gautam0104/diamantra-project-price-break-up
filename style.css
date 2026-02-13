@@ -27,6 +27,9 @@
   --color-gray-100: #f3f4f6;
   --color-gray-200: #e5e7eb;
   --color-gray-300: #d1d5db;
+  --color-silver: #A8A9AD;
+  --color-silver-dark: #71727A;
+  --color-silver-light: #C0C0C0;
 
   --font-heading: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
@@ -142,13 +145,19 @@ body {
   .nav-bottom__logo { font-size: 2.2rem; }
 }
 
-/* Gold rate control in navbar */
+/* Rate controls in navbar */
 .nav-bottom__rate-control {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   flex: 1;
   justify-content: center;
+}
+
+.rate-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .rate-label {
@@ -175,6 +184,18 @@ body {
 
 .rate-input-wrap:focus-within {
   border-color: var(--color-maroon);
+}
+
+.rate-input-wrap--silver {
+  border-color: var(--color-silver);
+}
+
+.rate-input-wrap--silver:focus-within {
+  border-color: var(--color-silver-dark);
+}
+
+.rate-input-wrap--silver .rate-prefix {
+  color: var(--color-silver-dark);
 }
 
 .rate-prefix {
@@ -419,6 +440,40 @@ body {
   font-weight: 700;
   color: var(--color-maroon);
   margin-top: 0.25rem;
+}
+
+/* Metal badge on product cards */
+.product-card__metal-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 10;
+}
+
+.product-card__metal-badge--gold {
+  background: linear-gradient(135deg, #fcd34d, #f59e0b);
+  color: #78350f;
+}
+
+.product-card__metal-badge--gold-enamel {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #fff;
+}
+
+.product-card__metal-badge--silver {
+  background: var(--color-silver-light);
+  color: #333;
+}
+
+.product-card__metal-badge--silver-enamel {
+  background: linear-gradient(135deg, var(--color-silver-light), var(--color-silver));
+  color: #fff;
 }
 
 /* ═══════════════════════════════════════════════
@@ -737,6 +792,28 @@ body {
   resize: vertical;
 }
 
+.form-group--checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-maroon);
+  cursor: pointer;
+}
+
 @media (max-width: 480px) {
   .form-row {
     grid-template-columns: 1fr;
@@ -1007,6 +1084,25 @@ body {
   font-weight: 700;
 }
 
+/* Silver breakup card header */
+.breakup-card__header--silver {
+  background: linear-gradient(135deg, var(--color-silver-dark) 0%, var(--color-silver) 100%);
+}
+
+/* Silver charges row */
+.breakup-row--silver {
+  background: #f5f5f6;
+}
+
+.breakup-row--silver .breakup-row__label {
+  color: var(--color-silver-dark);
+}
+
+.breakup-row--silver .breakup-row__value {
+  color: var(--color-silver-dark);
+  font-weight: 700;
+}
+
 /* Total row — maroon-deep like Diamantra accent */
 .breakup-card__total {
   display: flex;
@@ -1204,6 +1300,16 @@ body {
 
   .nav-top__link {
     white-space: nowrap;
+  }
+
+  .nav-bottom__rate-control {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rate-group {
+    width: 100%;
+    justify-content: center;
   }
 
   .nav-bottom__actions {
